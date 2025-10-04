@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intraday Trade Journal</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <h1>📈 Intraday Trade Journal</h1>
+  <div class="container">
+    <form id="tradeForm">
+      <div>
+        <label>Date</label>
+        <input type="date" id="date" required>
+      </div>
+      <div>
+        <label>Entry Time</label>
+        <input type="time" id="entryTime" required>
+      </div>
+      <div>
+        <label>Exit Time</label>
+        <input type="time" id="exitTime" required>
+      </div>
+      <div>
+        <label>Index</label>
+        <select id="index">
+          <option value="Nifty">Nifty</option>
+          <option value="Sensex">Sensex</option>
+          <option value="BankNifty">BankNifty</option>
+        </select>
+      </div>
+      <div>
+        <label>Type</label>
+        <select id="type">
+          <option value="Call">Call</option>
+          <option value="Put">Put</option>
+        </select>
+      </div>
+      <div>
+        <label>Trend</label>
+        <select id="trend">
+          <option value="With Trend">With Trend</option>
+          <option value="Against Trend">Against Trend</option>
+        </select>
+      </div>
+      <div>
+        <label>Plan</label>
+        <select id="plan">
+          <option value="Planned">Planned</option>
+          <option value="Overtrade">Overtrade</option>
+        </select>
+      </div>
+      <div>
+        <label>P&L (₹)</label>
+        <input type="number" step="0.01" id="pl" required>
+      </div>
+      <div>
+        <label>Brokerage (₹)</label>
+        <input type="number" step="0.01" id="brokerage" required>
+      </div>
+      <div>
+        <label>Govt. Charges (₹)</label>
+        <input type="number" step="0.01" id="charges" required>
+      </div>
+      <button type="submit">Add Trade</button>
+    </form>
+
+    <table id="tradeTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Entry</th>
+          <th>Exit</th>
+          <th>Index</th>
+          <th>Type</th>
+          <th>Trend</th>
+          <th>Plan</th>
+          <th>P&L</th>
+          <th>Brokerage</th>
+          <th>Charges</th>
+          <th>Net P&L</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div id="summary"></div>
+
+    <div class="actions">
+      <button class="btn-secondary" onclick="exportExcel()">📊 Export Excel</button>
+      <button class="btn-danger" onclick="clearTrades()">🗑 Clear All</button>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
