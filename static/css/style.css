@@ -1,36 +1,43 @@
+/* 🌙 Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
 }
 
 body {
   background: #0d1117;
   color: #e6edf3;
   padding: 20px;
+  line-height: 1.6;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 2.2rem;
+  margin-bottom: 25px;
+  font-size: clamp(1.8rem, 2vw + 1rem, 2.6rem);
   color: #58a6ff;
+  letter-spacing: 1px;
 }
 
+/* 🧱 Container */
 .container {
   max-width: 1100px;
   margin: 0 auto;
   background: #161b22;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
 }
 
+/* 🧾 Form Layout */
 form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
   margin-bottom: 25px;
 }
 
@@ -38,88 +45,48 @@ label {
   font-weight: 600;
   font-size: 0.9rem;
   color: #9da5b4;
+  margin-bottom: 4px;
+  display: inline-block;
 }
 
-input, select {
+input,
+select {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
+  padding: 10px 12px;
   border: 1px solid #30363d;
   border-radius: 8px;
   font-size: 0.95rem;
   background: #0d1117;
   color: #e6edf3;
+  transition: border 0.3s;
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   border: 1px solid #58a6ff;
   outline: none;
 }
 
+/* 🟩 Buttons */
 button {
-  padding: 12px 20px;
+  padding: 10px 18px;
   background: #238636;
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.1s;
+  white-space: nowrap;
 }
 
 button:hover {
   background: #2ea043;
+  transform: scale(1.03);
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-th, td {
-  padding: 12px 15px;
-  text-align: center;
-}
-
-th {
-  background: #21262d;
-  color: #58a6ff;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-tr:nth-child(even) {
-  background: #161b22;
-}
-
-tr:nth-child(odd) {
-  background: #0d1117;
-}
-
-tr:hover {
-  background: #21262d;
-}
-
-.profit {
-  color: #16a34a;
-  font-weight: 600;
-}
-
-.loss {
-  color: #dc2626;
-  font-weight: 600;
-}
-
-.actions {
-  margin-top: 20px;
-  text-align: center;
-}
-
+/* 🟨 Extra Button Styles */
 .btn-secondary {
   background: #f59e0b;
 }
@@ -134,9 +101,206 @@ tr:hover {
   background: #b91c1c;
 }
 
+/* 🧰 Action Buttons */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.actions button {
+  min-width: 100px;
+}
+
+/* 📊 Table Container */
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+  scrollbar-width: thin;
+  scrollbar-color: #58a6ff #161b22;
+}
+
+/* Custom Scrollbar for WebKit (Chrome, Edge, Safari) */
+.table-container::-webkit-scrollbar {
+  width: 8px;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background: #58a6ff;
+  border-radius: 10px;
+}
+.table-container::-webkit-scrollbar-track {
+  background: #161b22;
+}
+
+/* 📋 Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: center;
+  /* word-break: break-word; */
+}
+
+th {
+  background: #21262d;
+  color: #58a6ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tr:nth-child(even) {
+  background: #161b22;
+}
+
+tr:nth-child(odd) {
+  background: #0d1117;
+}
+
+tr:hover {
+  background: #21262d;
+  transition: background 0.2s ease-in-out;
+}
+
+.profit {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.loss {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* 📈 Summary */
 #summary {
   margin-top: 25px;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
+  color: #9da5b4;
+}
+
+#summary p {
+  margin: 4px 0;
+}
+
+/* 📱 Responsive: Tablets & Small Screens */
+@media (max-width: 992px) {
+  .container {
+    padding: 20px;
+  }
+
+  form {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+
+  th,
+  td {
+    padding: 10px 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+  }
+
+  .table-container {
+    max-height: 350px;
+  }
+}
+
+/* 📱 Responsive: Mobiles */
+@media (max-width: 768px) {
+  body {
+    padding: 12px;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  form {
+    grid-template-columns: 1fr;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
+
+  th,
+  td {
+    padding: 9px 7px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .table-container {
+    max-height: 320px;
+  }
+}
+
+/* 📱 Responsive: Very Small Phones */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  th,
+  td {
+    padding: 8px 10px;
+  }
+
+  form {
+    gap: 10px;
+  }
+
+  button {
+    font-size: 0.85rem;
+  }
+
+  .table-container {
+    max-height: 280px;
+  }
+}
+
+/* 💡 Smooth Transitions */
+input,
+select,
+button,
+.table-container {
+  transition: all 0.3s ease;
 }
